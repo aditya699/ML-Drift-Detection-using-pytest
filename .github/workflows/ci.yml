@@ -51,5 +51,5 @@ jobs:
 
       - name: Merge changes to main
         run: |
-          git merge aditya_dev --no-ff --commit -m "Auto-merge from aditya_dev to main"
+          git merge aditya_dev --no-ff --allow-unrelated-histories --commit -m "Auto-merge from aditya_dev to main"
           git push origin main
