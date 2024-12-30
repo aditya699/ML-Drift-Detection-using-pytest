@@ -3,8 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
-      - aditya_dev  # CI will run on these branches
+      - aditya_dev  # CI will run on this branch
   pull_request:
     branches:
       - main
@@ -40,6 +39,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Fetch main branch
+        run: |
+          git fetch origin main
+          git checkout main
+
       - name: Configure Git
         run: |
           git config --global user.name "github-actions"
@@ -47,6 +51,5 @@ jobs:
 
       - name: Merge changes to main
         run: |
-          git checkout main
           git merge aditya_dev --no-ff --commit -m "Auto-merge from aditya_dev to main"
           git push origin main
